@@ -1,0 +1,23 @@
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+
+    # Autoload aller Klassen im src‑Verzeichnis (wie in News‑Pull)
+    PhilTenno\FileSyncGo\:
+        resource: '../src/*'
+        exclude: '../src/{DependencyInjection,Entity,Tests,Kernel.php}'
+
+    # Spezifische Service‑Definitionen (wie bereits vorhanden)
+    PhilTenno\FileSyncGo\Controller\FileSyncController:
+        tags: ['contao.controller']
+
+    PhilTenno\FileSyncGo\Service\FileSyncService:
+        arguments: ['@logger']
+
+    filessyncgo.limiter:
+        class: Symfony\Component\RateLimiter\RateLimiterFactory
+        arguments:
+            - { policy: 'fixed_window', limit: 3, interval: '1 hour' }
+
+    Symfony\Component\RateLimiter\RateLimiterFactory: '@filessyncgo.limiter'
