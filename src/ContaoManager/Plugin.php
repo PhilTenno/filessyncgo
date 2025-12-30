@@ -3,21 +3,33 @@
 
 declare(strict_types=1);
 
-namespace PhilTenno\FileSyncGo\ContaoManager;
+namespace PhilTenno\FilesSyncGo\ContaoManager;
 
 use Contao\CoreBundle\ContaoCoreBundle;
-use Contao\ManagerPlugin\Bundle\Config\BundleConfig;   // ←  korrekter Namespace
-use Contao\ManagerPlugin\Bundle\Parser\ParserInterface;
 use Contao\ManagerPlugin\Bundle\BundlePluginInterface;
-use PhilTenno\FileSyncGo\FileSyncGoBundle;
+use Contao\ManagerPlugin\Bundle\Config\BundleConfig;
+use Contao\ManagerPlugin\Bundle\Parser\ParserInterface;
+use Contao\ManagerPlugin\Routing\RoutingPluginInterface;
+use PhilTenno\FilesSyncGo\FilesSyncGoBundle;
+use Symfony\Component\Config\Loader\LoaderResolverInterface;
+use Symfony\Component\HttpKernel\KernelInterface;
 
-class Plugin implements BundlePluginInterface
+class Plugin implements BundlePluginInterface, RoutingPluginInterface
 {
-    public function getBundles(ParserInterface $parser): array
+    public function getBundles(ParserInterface $parser)
     {
         return [
-            BundleConfig::create(FileSyncGoBundle::class)
+            BundleConfig::create(FilesSyncGoBundle::class)
                 ->setLoadAfter([ContaoCoreBundle::class]),
         ];
+    }
+
+    public function getRouteCollection(LoaderResolverInterface $resolver, KernelInterface $kernel)
+    {
+        $file = __DIR__ . '/../../config/routes.yaml';
+
+        return $resolver
+            ->resolve($file)
+            ->load($file);
     }
 }

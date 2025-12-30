@@ -25,11 +25,11 @@
     },
     "autoload": {
         "psr-4": {
-            "PhilTenno\\FileSyncGo\\": "src/"
+            "PhilTenno\\FilesSyncGo\\": "src/"
         }
     },
     "extra": {
-        "contao-manager-plugin": "PhilTenno\\FileSyncGo\\ContaoManager\\Plugin"
+        "contao-manager-plugin": "PhilTenno\\FilesSyncGo\\ContaoManager\\Plugin"
     },
     "config": {
         "allow-plugins": {
