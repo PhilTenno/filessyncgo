@@ -9,12 +9,14 @@ use Contao\CoreBundle\ContaoCoreBundle;
 use Contao\ManagerPlugin\Bundle\BundlePluginInterface;
 use Contao\ManagerPlugin\Bundle\Config\BundleConfig;
 use Contao\ManagerPlugin\Bundle\Parser\ParserInterface;
+use Contao\ManagerPlugin\Config\ConfigPluginInterface;
 use Contao\ManagerPlugin\Routing\RoutingPluginInterface;
-use PhilTenno\FilesSyncGo\FilesSyncGoBundle;
+use Symfony\Component\Config\Loader\LoaderInterface;
 use Symfony\Component\Config\Loader\LoaderResolverInterface;
 use Symfony\Component\HttpKernel\KernelInterface;
+use PhilTenno\FilesSyncGo\FilesSyncGoBundle;
 
-class Plugin implements BundlePluginInterface, RoutingPluginInterface
+class Plugin implements BundlePluginInterface, RoutingPluginInterface, ConfigPluginInterface
 {
     public function getBundles(ParserInterface $parser)
     {
@@ -31,5 +33,14 @@ class Plugin implements BundlePluginInterface, RoutingPluginInterface
         return $resolver
             ->resolve($file)
             ->load($file);
+    }
+
+    public function registerContainerConfiguration(LoaderInterface $loader, array $config): void
+    {
+        // Services des Bundles laden
+        $loader->load(__DIR__ . '/../../config/services.yaml');
+
+        // RateLimiter-Konfiguration des Bundles laden
+        $loader->load(__DIR__ . '/../../config/rate_limiter.yaml');
     }
 }
