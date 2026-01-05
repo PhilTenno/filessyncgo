@@ -1,7 +1,7 @@
 {
     "name": "philtenno/filessyncgo",
     "description": "Contao-Erweiterung zum Auslösen einer Dateisynchronisation über öffentliche URL.",
-    "keywords": ["contao", "filesync"],
+    "keywords": ["contao", "filesync", "file", "synchonisation", "sync"],
     "type": "contao-bundle",
     "license": "proprietary",
     "authors": [
