@@ -37,6 +37,6 @@ $GLOBALS['TL_DCA']['tl_settings']['fields']['filessyncgo_token'] = [
 // Legende und Feld einfügen
 $paletteManipulator = new PaletteManipulator();
 $paletteManipulator
-    ->addLegend('filessyncgo_legend', 'system')
-    ->addField('filessyncgo_token', 'filessyncgo_legend', PaletteManipulator::POSITION_APPEND)
+    ->addLegend('FilesSyncGo', 'system')
+    ->addField('filessyncgo_token', 'FilesSyncGo', PaletteManipulator::POSITION_APPEND)
     ->applyToPalette('default', 'tl_settings');
