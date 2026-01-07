@@ -1,47 +1,37 @@
-# FilesSyncGo für Contao CMS
-
-Diese Erweiterung ermöglicht die manuelle Auslösung der Contao-Dateisynchronisierung über eine geschützte HTTP-Schnittstelle (URL). Dies ist besonders nützlich, um nach automatisierten Datei-Uploads (z. B. via FTP) die Datenbank-Synchronisierung von Contao anzustoßen.
+# FilesSyncGo for Contao CMS
+This extension enables the manual triggering of Contao file synchronization via a protected HTTP interface (URL). This is especially useful for initiating Contao’s database synchronization after automated file uploads (e.g., via FTP).
 
 ## Features
+HTTP endpoint: Provides the route /filessyncgo
+Security: Access protection via a configurable token
+Abuse protection: Integrated rate limiter (IP-based) to prevent overload from too many requests
+Contao 5 Ready: Fully compatible with Contao 5.3+
 
-- **HTTP-Endpunkt**: Stellt die Route `/filessyncgo` zur Verfügung
-- **Sicherheit**: Zugriffsschutz über einen konfigurierbaren Token
-- **Missbrauchsschutz**: Integrierter Rate-Limiter (IP-basiert), um Überlastung durch zu viele Anfragen zu verhindern
-- **Contao 5 Ready**: Vollständig kompatibel mit Contao 5.3+ 
+### Configuration
+#### Set token
+Access to the interface requires a token. You can define it in the Contao backend under System → Settings in the "FilesSync" section.
 
-## Konfiguration
+#### Rate limiter (optional)
+By default, a rate limiter is enabled that allows a maximum of 5 requests per minute per IP address. The configuration is handled internally by the bundle, but can be overridden via the app’s config/config.yaml if needed.
 
-### Token festlegen
+### Usage
+To trigger synchronization, call the URL with your defined token as a GET parameter:
+https://your-domain.tld/filessyncgo?token=YOUR_DEFINED_TOKEN
 
-Der Zugriff auf die Schnittstelle erfordert einen Token. Diesen kannst du im Contao-Backend unter **System → Einstellungen** im Bereich "FilesSync" definieren.
+#### Return values
+200 OK – Synchronization started successfully
 
-### Rate-Limiter (Optional)
-
-Standardmäßig ist ein Rate-Limiter aktiv, der maximal 5 Anfragen pro Minute pro IP-Adresse erlaubt. Die Konfiguration erfolgt bundle-intern, kann aber bei Bedarf über die `config/config.yaml` der App überschrieben werden.
-
-## Verwendung
-
-Um die Synchronisierung auszulösen, rufe die URL mit deinem definierten Token als GET-Parameter auf:
-https://deine-domain.tld/filessyncgo?token=DEIN_DEFINIERTER_TOKEN
-
-
-### Rückgabewerte
-
-**200 OK** – Synchronisierung erfolgreich gestartet
-
-```json
 {"success":true,"message":"File sync triggered."}
-401 Unauthorized – Token fehlt oder ist ungültig
+401 Unauthorized – Token is missing or invalid
 
 {"error":"Invalid token."}
-429 Too Many Requests – Zu viele Anfragen in kurzer Zeit
+429 Too Many Requests – Too many requests in a short period of time
 
 {"error":"Too many requests. Please try again later."}
-```
 
-#### Technische Details
+#### Technical details
 Route: /filessyncgo (Name: syncFiles)
-Anforderung: PHP ^8.2, Contao ^5.3
+Requirement: PHP ^8.2, Contao ^5.3
 
-### Lizenz
+#### License
 LGPL-3.0-or-later
