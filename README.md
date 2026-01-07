@@ -1,6 +1,6 @@
 # FilesSyncGo für Contao CMS
 
-Diese Erweiterung ermöglicht die manuelle Auslösung der Contao-Dateisynchronisierung über eine geschützte HTTP-Schnittstelle (URL). Dies ist besonders nützlich, um nach automatisierten Datei-Uploads (z. B. via FTP oder externe Skripte) die Datenbank-Synchronisierung von Contao anzustoßen.
+Diese Erweiterung ermöglicht die manuelle Auslösung der Contao-Dateisynchronisierung über eine geschützte HTTP-Schnittstelle (URL). Dies ist besonders nützlich, um nach automatisierten Datei-Uploads (z. B. via FTP) die Datenbank-Synchronisierung von Contao anzustoßen.
 
 ## Features
 
@@ -33,17 +33,15 @@ https://deine-domain.tld/filessyncgo?token=DEIN_DEFINIERTER_TOKEN
 {"success":true,"message":"File sync triggered."}
 401 Unauthorized – Token fehlt oder ist ungültig
 
-json
-Copy
 {"error":"Invalid token."}
 429 Too Many Requests – Zu viele Anfragen in kurzer Zeit
 
-json
-Copy
 {"error":"Too many requests. Please try again later."}
-Technische Details
-Route: /filessyncgo (Name: philtenno_filessyncgo)
+```
+
+#### Technische Details
+Route: /filessyncgo (Name: syncFiles)
 Anforderung: PHP ^8.2, Contao ^5.3
-Abhängigkeiten: Nutzt die Symfony RateLimiter Komponente
-Lizenz
+
+### Lizenz
 LGPL-3.0-or-later
