@@ -1,6 +1,6 @@
 <?php
-
+//FilesSyncGo ->config/bundles.php
 return [
     // Dein Bundle – wird im Contao‑Manager registriert
-    PhilTenno\FileSyncGo\FileSyncGoBundle::class => ['all' => true],
+    PhilTenno\FilesSyncGo\FilesSyncGoBundle::class => ['all' => true],
 ];

@@ -1,3 +1,4 @@
+#FilesSyncGo ->config/services.yaml
 services:
     PhilTenno\FilesSyncGo\:
         resource: '../src/*'

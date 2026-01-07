@@ -1,3 +1,4 @@
+# FilesSyncGo ->config/rate_limiter.php
 framework:
     rate_limiter:
         filessyncgo:

@@ -1,5 +1,5 @@
 <?php
-// src/Service/FilesSyncSettings.php
+//FilesSyncGo -> src/Service/FilesSyncSettings.php
 declare(strict_types=1);
 
 namespace PhilTenno\FilesSyncGo\Service;

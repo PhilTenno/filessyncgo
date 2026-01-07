@@ -1,5 +1,5 @@
 <?php
-// src/ContaoManager/Plugin.php
+//FilesSyncGo -> src/ContaoManager/Plugin.php
 
 declare(strict_types=1);
 

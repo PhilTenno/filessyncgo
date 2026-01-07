@@ -1,3 +1,4 @@
+#FilesSyncGo ->config/routes.yaml
 filessyncgo:
     resource: '../src/Controller/'
     type: attribute
