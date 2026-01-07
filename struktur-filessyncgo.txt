@@ -1,0 +1,26 @@
+.
+├── README.md
+├── Resources
+│   └── contao
+│       ├── dca
+│       │   └── tl_settings.php
+│       └── languages
+│           ├── de
+│           └── en
+├── composer.json
+├── composer.lock
+├── config
+│   ├── bundles.php
+│   ├── rate_limiter.yaml
+│   ├── routes.yaml
+│   └── services.yaml
+├── src
+│   ├── ContaoManager
+│   │   └── Plugin.php
+│   ├── Controller
+│   │   └── FilesSyncGoController.php
+│   ├── FilesSyncGoBundle.php
+│   └── Service
+│       ├── FilesSyncGoService.php
+│       └── FilesSyncSettings.php
+├── struktur-filessyncgo.txt
